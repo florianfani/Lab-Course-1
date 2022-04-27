@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ivKm2mcfB6Zl9ePcKFdTewWbMzwbDpgsu5cY0sVLkm7JqFD6S6kSzUlORDpfokCtRuVnvcX2dwcq+IAnKhGnSQ==",
+  "dgSpecHash": "GG0f7QfT+ri7Fkz+pVPNIwhhAIiEw6+5kP+FJ5zRJy4HwnNNjZurS/MPgET9TgREC9kEuuEeIYxq6m1miV7k9w==",
   "success": true,
-  "projectFilePath": "C:\\Lab Course 1\\Project\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.16\\microsoft.data.sqlite.core.5.0.16.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X1HNISN8Ig6pAMcCtti2n9Xy5M1RtU9TdIpZQ2XGwhORS4qHpwzw1bUfELDIwbj4ObT3Xg73seJ1tjqfeR1JMw==",
+  "dgSpecHash": "fyyNUhqlIHoQiIbllnCGAY7hYLh61iwy2oC1Ho7eou3DT0kN6QSU0Vp5LoYm+8Brxsz2KLfjUVA1fh9RrusaZg==",
   "success": true,
-  "projectFilePath": "C:\\Lab Course 1\\Project\\Persistence\\Persistence.csproj",
+  "projectFilePath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.16\\microsoft.data.sqlite.core.5.0.16.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",

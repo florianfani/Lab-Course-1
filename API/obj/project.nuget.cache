@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gAwjNdtJmuwLhuZ2fs9VBn9hRTXZ4s43hrKy2YIi3H3IBAkYd2bGuPjddNNVy3W3KJSqtkKgwBN0naOr78gEnQ==",
+  "dgSpecHash": "zzmxKv6qiiA9z2XgKU/KxPsaH0K1uGgGd6IyG9kvNJCT62zJ8WUG3k5NC0pL3JACqdyrGLbG9NbsulPHvv9O0w==",
   "success": true,
-  "projectFilePath": "C:\\Lab Course 1\\Project\\API\\API.csproj",
+  "projectFilePath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flori\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

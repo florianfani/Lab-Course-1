@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj": {}
+    "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj": {
+    "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
-        "outputPath": "C:\\Lab Course 1\\Project\\Domain\\obj\\",
+        "outputPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\flori\\AppData\\Roaming\\NuGet\\NuGet.Config"

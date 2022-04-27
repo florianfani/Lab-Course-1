@@ -958,11 +958,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Lab Course 1\\Project\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Lab Course 1\\Project\\Persistence\\Persistence.csproj",
+      "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Persistence\\Persistence.csproj",
       "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
-      "outputPath": "C:\\Lab Course 1\\Project\\Persistence\\obj\\",
+      "outputPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\flori\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -977,8 +977,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Lab Course 1\\Project\\Domain\\Domain.csproj"
+            "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Domain\\Domain.csproj"
             }
           }
         }
