@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import { Header, Icon, List } from 'semantic-ui-react';
 
 
 
 
-function App() {
+
+
+function App(): JSX.Element {
   const [jobs, setJobs] = useState([])
 
   useEffect(() =>{
@@ -17,21 +20,24 @@ function App() {
 
 
   return (
-    <div className="App">
-     
-      <header className="App-header">
-        
-          <ul>
+    <div>
+     <Header as='h2' icon='users' content='Klinika'/>
+      
+    
+
+
+          <List>
             {jobs.map((job: any) => (
-              <li key={job.id}>
+              <List.Item key={job.id}>
                 {job.title}
-              </li>
+              </List.Item>
             ))}
-          </ul>
+          </List>
         
-      </header>
+      
     </div>
   );
 }
 
 export default App;
+
