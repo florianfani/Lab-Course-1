@@ -21,7 +21,7 @@ function App(): JSX.Element {
 
   return (
     <div>
-     <Header as='h2' icon='users' content='Klinika'/>
+     <Header as='h1' icon='users' content='Klinika'/>
       
     
 
