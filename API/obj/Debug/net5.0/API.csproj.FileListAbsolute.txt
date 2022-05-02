@@ -128,3 +128,8 @@ C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\MediatR.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\MediatR.Contracts.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\AutoMapper.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
