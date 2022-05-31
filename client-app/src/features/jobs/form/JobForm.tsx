@@ -6,9 +6,10 @@ interface Props{
     job: Job | undefined;
     closeForm: () => void;
     createOrEdit: (job: Job) => void;
+    submitting: boolean;
 }
 
-export default function JobForm({job: selectedJob, closeForm, createOrEdit}: Props){
+export default function JobForm({job: selectedJob, closeForm, createOrEdit, submitting}: Props){
 
     const initialState = selectedJob ?? {
         id: '',
@@ -34,7 +35,7 @@ export default function JobForm({job: selectedJob, closeForm, createOrEdit}: Pro
                 <Form.Input placeholder='Title' value={job.title} name='title' onChange={handleInputChange} />
                 <Form.TextArea placeholder='Description' value={job.description} name='description' onChange={handleInputChange} />
                 <Form.Input placeholder='Category' value={job.category} name='category' onChange={handleInputChange} />
-                <Button floated='right' positive type='submit' content='Submit' />
+                <Button loading={submitting} floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>

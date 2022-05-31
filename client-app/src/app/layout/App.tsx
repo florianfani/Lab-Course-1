@@ -5,6 +5,8 @@ import { Job } from '../models/job';
 import NavBar from './NavBar';
 import JobDashboard from '../../features/jobs/dashboard/JobDashboard';
 import {v4 as uuid} from 'uuid';
+import agent from '../api/agent';
+import LoadingComponent from './LoadingComponent';
 
 
 
@@ -14,10 +16,14 @@ function App(): JSX.Element {
   const [jobs, setJobs] = useState<Job[]>([])
   const [selectedJob, setSelectedJob] = useState<Job | undefined>(undefined);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() =>{
-    axios.get<Job[]>('http://localhost:5000/api/jobs').then(response =>{
-      setJobs(response.data);
+    agent.Jobs.list().then(response =>{
+      let jobs: Job[] = [];
+      setJobs(response);
+      setLoading(false);
     })
   }, [])
 
@@ -39,14 +45,36 @@ function App(): JSX.Element {
   }
 
   function handleCreateOrEditJob(job: Job){
-    job.id ? setJobs([...jobs.filter(x => x.id !== job.id), job]) : setJobs([...jobs, {...job, id: uuid()}]);
-    setEditMode(false);
-    setSelectedJob(job); 
+    setSubmitting(true);
+    if (job.id) {
+      agent.Jobs.update(job).then(() =>{
+        setJobs([...jobs.filter(x => x.id !== job.id), job])
+        setSelectedJob(job);
+        setEditMode(false);
+        setSubmitting(false);
+      })
+    }
+    else{
+      job.id = uuid();
+      agent.Jobs.create(job).then(() =>{
+        setJobs([...jobs, job])
+        setSelectedJob(job);
+        setEditMode(false);
+        setSubmitting(false);
+      })
+    }
   }
 
   function handleDeleteJob(id: string){
-    setJobs([...jobs.filter(x => x.id !== id)]);
+    setSubmitting(true);
+    agent.Jobs.delete(id).then(() =>{
+      setJobs([...jobs.filter(x => x.id !== id)]);
+      setSubmitting(false);
+    })
+    
   }
+
+  if (loading) return <LoadingComponent content='Loading app' />
 
   return (
     <Fragment>
@@ -63,6 +91,7 @@ function App(): JSX.Element {
         closeForm={handleFormClose}
         createOrEdit={handleCreateOrEditJob}
         deleteJob={handleDeleteJob}
+        submitting={submitting}
       />
     </Container>
 

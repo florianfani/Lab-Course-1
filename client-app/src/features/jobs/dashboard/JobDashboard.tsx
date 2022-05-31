@@ -15,15 +15,18 @@ interface Props{
     closeForm: () => void;
     createOrEdit: (job: Job) => void;
     deleteJob: (id: string) => void;
+    submitting: boolean;
 }
 
-export default function JobDashboard({jobs, selectedJob, selectJob, cancelSelectJob, editMode, openForm, closeForm, createOrEdit, deleteJob}: Props){
+export default function JobDashboard({jobs, selectedJob, selectJob, cancelSelectJob, editMode,
+     openForm, closeForm, createOrEdit, deleteJob, submitting}: Props){
     return(
         <Grid>
             <Grid.Column width='10'>
              <JobList jobs={jobs}
                  selectJob={selectJob}
                  deleteJob={deleteJob}
+                 submitting={submitting}
              />
             </Grid.Column>
             <GridColumn width='6'>
@@ -34,7 +37,12 @@ export default function JobDashboard({jobs, selectedJob, selectJob, cancelSelect
                      openForm={openForm}
                 />}
                 {editMode &&
-                <JobForm closeForm={closeForm} job={selectedJob} createOrEdit={createOrEdit} />}
+                <JobForm
+                     closeForm={closeForm}
+                     job={selectedJob}
+                     createOrEdit={createOrEdit}
+                     submitting={submitting}
+                />}
             </GridColumn>
         </Grid>
     )
