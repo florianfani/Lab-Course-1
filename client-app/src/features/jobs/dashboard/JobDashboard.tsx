@@ -1,49 +1,30 @@
+
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Grid, GridColumn } from "semantic-ui-react";
 import { Job } from "../../../app/models/job";
+import { useStore } from "../../../app/stores/store";
 import JobDetails from "../details/JobDetails";
 import JobForm from "../form/JobForm";
 import JobList from "./JobList";
 
-interface Props{
-    jobs: Job[];
-    selectedJob: Job | undefined;
-    selectJob: (id: string) => void;
-    cancelSelectJob: () => void;
-    editMode: boolean;
-    openForm: (id: string) => void;
-    closeForm: () => void;
-    createOrEdit: (job: Job) => void;
-    deleteJob: (id: string) => void;
-    submitting: boolean;
-}
 
-export default function JobDashboard({jobs, selectedJob, selectJob, cancelSelectJob, editMode,
-     openForm, closeForm, createOrEdit, deleteJob, submitting}: Props){
+
+export default observer(function JobDashboard(){
+
+    const {jobStore} = useStore();
+    const {selectedJob, editMode} = jobStore;
     return(
         <Grid>
             <Grid.Column width='10'>
-             <JobList jobs={jobs}
-                 selectJob={selectJob}
-                 deleteJob={deleteJob}
-                 submitting={submitting}
-             />
+             <JobList />
             </Grid.Column>
             <GridColumn width='6'>
                 {selectedJob && !editMode &&
-                <JobDetails
-                     job={selectedJob} 
-                     cancelSelectJob={cancelSelectJob}
-                     openForm={openForm}
-                />}
+                <JobDetails />}
                 {editMode &&
-                <JobForm
-                     closeForm={closeForm}
-                     job={selectedJob}
-                     createOrEdit={createOrEdit}
-                     submitting={submitting}
-                />}
+                <JobForm />}
             </GridColumn>
         </Grid>
     )
-}
+})

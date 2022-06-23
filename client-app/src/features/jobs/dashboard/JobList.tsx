@@ -1,16 +1,15 @@
+import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Job } from "../../../app/models/job";
+import { useStore } from "../../../app/stores/store";
 
 
-interface Props{
-    jobs: Job[]
-    selectJob: (id: string) => void;
-    deleteJob: (id: string) => void;
-    submitting: boolean;
-}
 
-export default function JobList({jobs, selectJob, deleteJob, submitting}: Props){
+export default observer(function JobList(){
+    const {jobStore} = useStore();
+    const {deleteJob, jobsByDate, loading} = jobStore;
+
     const [target, setTarget] = useState('');
 
     function handleJobDelete(e: SyntheticEvent<HTMLButtonElement>, id: string){
@@ -18,22 +17,25 @@ export default function JobList({jobs, selectJob, deleteJob, submitting}: Props)
         deleteJob(id);
     }
 
+
+
     return(
         <Segment>
             <Item.Group divided>
-                {jobs.map(job => (
+                {jobsByDate.map(job => (
                     <Item key={job.id}>
                         <Item.Content>
                             <Item.Header as='a'>{job.title}</Item.Header>
-                            <Item.Meta>{job.category}</Item.Meta>
+                            <Item.Meta>{job.date}</Item.Meta>
                             <Item.Description>
                                 <div>{job.description}</div>
+                                <div>{job.city}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectJob(job.id)} floated='right' content='View' color='blue' />
+                                <Button onClick={() => jobStore.selectJob(job.id)} floated='right' content='View' color='blue' />
                                 <Button
                                     name={job.id}
-                                    loading={submitting && target === job.id}
+                                    loading={loading && target === job.id}
                                     onClick={(e) => handleJobDelete(e, job.id)}
                                     floated='right' 
                                     content='Delete' 
@@ -47,4 +49,4 @@ export default function JobList({jobs, selectJob, deleteJob, submitting}: Props)
             </Item.Group>
         </Segment>
     )
-}
+})
