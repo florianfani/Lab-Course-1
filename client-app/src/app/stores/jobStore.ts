@@ -18,6 +18,16 @@ export default class JobStore {
         return Array.from(this.jobRegistry.values()).sort((a, b) => 
         Date.parse(a.date) - Date.parse(b.date));
     }
+
+    get groupedJobs() {
+        return Object.entries(
+            this.jobsByDate.reduce((jobs, job) => {
+                const date = job.date;
+                jobs[date] = jobs[date] ? [...jobs[date], job] : [job];
+                return jobs;
+            }, {} as {[key: string]: Job[]})
+        )
+    }
     
     loadJobs = async () => {
         this.loadingInitial = true;

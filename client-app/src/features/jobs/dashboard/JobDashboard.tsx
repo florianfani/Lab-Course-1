@@ -7,6 +7,7 @@ import { Job } from "../../../app/models/job";
 import { useStore } from "../../../app/stores/store";
 import JobDetails from "../details/JobDetails";
 import JobForm from "../form/JobForm";
+import JobFilters from "./JobFilters";
 import JobList from "./JobList";
 
 
@@ -34,7 +35,7 @@ export default observer(function JobDashboard(){
              <JobList />
             </Grid.Column>
             <GridColumn width='6'>
-                <h2>Job Filters</h2>
+                <JobFilters />
             </GridColumn>
         </Grid>
     )

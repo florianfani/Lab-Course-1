@@ -1,9 +1,13 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Button, Card, Image } from "semantic-ui-react";
+import { Button, Card, Grid, Image } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { useStore } from "../../../app/stores/store";
+import JobDetailedChat from "./JobDetailedChat";
+import JobDetailedHeader from "./JobDetailedHeader";
+import JobDetailedInfo from "./JobDetailedInfo";
+import JobDetailedSidebar from "./JobDetailedSidebar";
 
 
 
@@ -19,23 +23,15 @@ export default observer(function JobDetails(){
     if(loadingInitial || !job) return <LoadingComponent />;
 
     return(
-        <Card fluid>
-           <Image src={`/assets/categoryImages/${job.category}.jpg`} />
-              <Card.Content>
-                 <Card.Header>{job.title}</Card.Header>
-                    <Card.Meta>
-                       <span>{job.date}</span>
-                    </Card.Meta>
-                       <Card.Description>
-                           {job.description}
-                       </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                 <Button.Group widths='2'>
-                     <Button as={Link} to={`/manage/${job.id}`} basic color='blue' content='Edit' />
-                     <Button as={Link} to='/jobs' basic color='grey' content='Cancel' />
-                 </Button.Group>
-              </Card.Content>
-        </Card>
+        <Grid>
+            <Grid.Column width={10}>
+               <JobDetailedHeader job={job} />
+               <JobDetailedInfo job={job} />
+               <JobDetailedChat />
+            </Grid.Column>
+            <Grid.Column width={6}>
+               <JobDetailedSidebar />
+            </Grid.Column>
+        </Grid>
     )
 })
