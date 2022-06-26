@@ -9,6 +9,12 @@ import agent from '../api/agent';
 import LoadingComponent from './LoadingComponent';
 import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
+import { Route, useLocation } from 'react-router-dom';
+import HomePage from '../../features/home/HomePage';
+import JobForm from '../../features/jobs/form/JobForm';
+import JobDetails from '../../features/jobs/details/JobDetails';
+
+
 
 
 
@@ -16,32 +22,28 @@ import { observer } from 'mobx-react-lite';
 
 
 function App(): JSX.Element {
-  const {jobStore} = useStore();
-
-
-
-  useEffect(() =>{
-    jobStore.loadJobs();
-  }, [jobStore])
-
-  
-
-
-
-  if (jobStore.loadingInitial) return <LoadingComponent content='Loading app' />
+  const location = useLocation();
 
   return (
     <Fragment>
-     <NavBar />
-      
-    <Container style={{marginTop: '7em'}}>
-      <JobDashboard />
-    </Container>
+    <Route exact path='/' component={HomePage} />
+    <Route 
+      path={'/(.+)'}
+      render={() =>(
+        <>
+        <NavBar />
+        <Container style={{marginTop: '7em'}}>
+          <Route exact path='/jobs' component={JobDashboard} />
+          <Route path='/jobs/:id' component={JobDetails} />
+          <Route key={location.key} path={['/createJob', '/manage/:id']} component={JobForm} />
+        </Container>
+        </>
+      )}
+    
+    />
+     
 
 
-          
-        
-      
     </Fragment>
   );
 }

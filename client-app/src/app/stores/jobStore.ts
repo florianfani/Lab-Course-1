@@ -20,11 +20,11 @@ export default class JobStore {
     }
     
     loadJobs = async () => {
+        this.loadingInitial = true;
         try{
             const jobs = await agent.Jobs.list();
                 jobs.forEach(job => {
-                    job.date = job.date.split('T')[0];
-                    this.jobRegistry.set(job.id, job);
+                    this.setJob(job);
                   })
                   this.setLoadingInitial(false);
         }
@@ -33,31 +33,47 @@ export default class JobStore {
             this.setLoadingInitial(false);
         }
     }
+
+    loadJob = async (id: string) => {
+        let job = this.getJob(id);
+        if(job) {
+            this.selectedJob = job;
+            return job;
+        }
+        else {
+            this.loadingInitial = true;
+            try{
+                job = await agent.Jobs.details(id);
+                this.setJob(job);
+                runInAction(() => {
+                    this.selectedJob = job;
+                })
+                this.setLoadingInitial(false);
+                return job;
+            }
+            catch (error){
+                console.log(error);
+                this.setLoadingInitial(false);
+            }
+        }
+    }
+
+    private setJob = (job: Job) => {
+        job.date = job.date.split('T')[0];
+        this.jobRegistry.set(job.id, job);
+    }
+
+    private getJob = (id: string) => {
+        return this.jobRegistry.get(id);
+    }
     
     setLoadingInitial = (state: boolean) =>{
         this.loadingInitial = state;
     }
 
-    selectJob = (id: string) => {
-        this.selectedJob = this.jobRegistry.get(id);
-    }
-
-    cancelSelectedJob = () => {
-        this.selectedJob = undefined;
-    }
-
-    openForm = (id?: string) => {
-        id ? this.selectJob(id) : this.cancelSelectedJob();
-        this.editMode = true;
-    }
-
-    closeForm = () => {
-        this.editMode = false;
-    }
 
     createJob = async (job: Job) => {
         this.loading = true;
-        job.id = uuid();
         try {
             await agent.Jobs.create(job);
             runInAction(() => {
@@ -100,7 +116,6 @@ export default class JobStore {
             await agent.Jobs.delete(id);
             runInAction(() => {
                 this.jobRegistry.delete(id);
-                if (this.selectedJob?.id === id) this.cancelSelectedJob();
                 this.loading = false;
             })
         }

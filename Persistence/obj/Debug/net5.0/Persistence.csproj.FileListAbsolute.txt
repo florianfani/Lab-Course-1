@@ -28,3 +28,18 @@ C:\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.cs
 C:\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.dll
 C:\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\ref\Persistence.dll
 C:\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.pdb
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\Persistence.deps.json
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\Persistence.dll
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\ref\Persistence.dll
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\Persistence.pdb
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\Domain.dll
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\bin\Debug\net5.0\Domain.pdb
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.csproj.AssemblyReference.cache
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.AssemblyInfoInputs.cache
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.AssemblyInfo.cs
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.csproj.CoreCompileInputs.cache
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.csproj.CopyComplete
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.dll
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\ref\Persistence.dll
+D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\Persistence\obj\Debug\net5.0\Persistence.pdb
