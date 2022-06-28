@@ -14,6 +14,7 @@ export default function NavBar(){
                     Klinika
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/jobs' name='Jobs'/>
+                <Menu.Item as={NavLink} to='/errors' name='Errors'/>
                 <Menu.Item>
                     <Button as={NavLink} to='/createJob' positive content='Create Job'/>
                 </Menu.Item>

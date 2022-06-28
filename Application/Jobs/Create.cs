@@ -6,19 +6,29 @@ using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Persistence;
+using FluentValidation;
+using Application.Core;
 
 namespace Application.Jobs
 {
     public class Create
     {
-        public class Command : IRequest{
+        public class Command : IRequest<Result<Unit>>{
             
 
             public Job Job { get; set; }
         }
 
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Job).SetValidator(new JobValidator());
+            }
+        }
 
-        public class Handler : IRequestHandler<Command>
+
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
         private readonly DataContext context;
             public Handler(DataContext context)
@@ -26,13 +36,15 @@ namespace Application.Jobs
             this.context = context;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 this.context.Jobs.Add(request.Job);
 
-                await this.context.SaveChangesAsync();
+                var result = await this.context.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+                if(!result) return Result<Unit>.Failure("Failed to create job");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
 

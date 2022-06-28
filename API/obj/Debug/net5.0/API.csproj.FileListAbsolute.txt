@@ -205,3 +205,6 @@ D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\API\obj\Debug\net5.0
 D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\API\obj\Debug\net5.0\ref\API.dll
 D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\API\obj\Debug\net5.0\API.pdb
 D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

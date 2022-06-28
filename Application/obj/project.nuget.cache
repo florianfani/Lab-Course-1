@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "8G6eDkzORGuMJxPZ4plsOAIoi3Xvh1EvSiDLeZcZYzz2CPZiGM9Cn/giusFDNEXDxl82RWDMAtmboQYuj5bpMw==",
+  "dgSpecHash": "AqoUl4A6ZwYcjRF2WbsjZ0FhS3mduKsm4/t5P9uGqBu0wDJBC1HvF7pJ042QVhGzpXwXDfdgM8kYlbDFFUmC/w==",
   "success": true,
   "projectFilePath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flori\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\flori\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
+    "C:\\Users\\flori\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.1.1\\fluentvalidation.aspnetcore.11.1.1.nupkg.sha512",
+    "C:\\Users\\flori\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.1.0\\fluentvalidation.dependencyinjectionextensions.11.1.0.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\flori\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\10.0.1\\mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512",
