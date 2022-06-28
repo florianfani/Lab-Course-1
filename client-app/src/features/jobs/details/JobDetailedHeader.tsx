@@ -1,7 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import {Job} from "../../../app/models/job";
+import {format} from 'date-fns';
 
 const jobImageStyle = {
     filter: 'brightness(30%)'
@@ -34,7 +36,7 @@ export default observer (function JobDetailedHeader({job}: Props) {
                                     content={job.title}
                                     style={{color: 'white'}}
                                 />
-                                <p>{job.date}</p>
+                                <p>{format(job.date!, 'dd MMM yyyy')}</p>
                                 <p>
                                     Posted by <strong>Aurel</strong>
                                 </p>
@@ -46,7 +48,7 @@ export default observer (function JobDetailedHeader({job}: Props) {
             <Segment clearing attached='bottom'>
                 <Button color='teal'>Join Job</Button>
                 <Button>Cancel attendance</Button>
-                <Button color='orange' floated='right'>
+                <Button as={Link} to={`/manage/${job.id}`} color='orange' floated='right'>
                     Manage Job
                 </Button>
             </Segment>

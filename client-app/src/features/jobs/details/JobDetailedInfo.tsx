@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
 import {Job} from "../../../app/models/job";
+import {format} from 'date-fns';
 
 interface Props {
     job: Job
@@ -27,7 +28,7 @@ export default observer(function JobDetailedInfo({job}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
             <span>
-              {job.date}
+              {format(job.date!, 'dd MMM yyyy h:mm aa')}
             </span>
                     </Grid.Column>
                 </Grid>

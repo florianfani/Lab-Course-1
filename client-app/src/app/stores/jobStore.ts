@@ -2,13 +2,14 @@ import { action, makeAutoObservable, makeObservable, observable, runInAction } f
 import agent from "../api/agent";
 import { Job } from "../models/job";
 import { v4 as uuid } from "uuid";
+import {format} from 'date-fns';
 
 export default class JobStore {
     jobRegistry = new Map<string, Job>();
     selectedJob: Job | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = true;
+    loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -16,13 +17,13 @@ export default class JobStore {
 
     get jobsByDate() {
         return Array.from(this.jobRegistry.values()).sort((a, b) => 
-        Date.parse(a.date) - Date.parse(b.date));
+        a.date!.getTime() - b.date!.getTime());
     }
 
     get groupedJobs() {
         return Object.entries(
             this.jobsByDate.reduce((jobs, job) => {
-                const date = job.date;
+                const date = format(job.date!, 'dd MMM yyyy');
                 jobs[date] = jobs[date] ? [...jobs[date], job] : [job];
                 return jobs;
             }, {} as {[key: string]: Job[]})
@@ -69,7 +70,7 @@ export default class JobStore {
     }
 
     private setJob = (job: Job) => {
-        job.date = job.date.split('T')[0];
+        job.date = new Date(job.date!);
         this.jobRegistry.set(job.id, job);
     }
 

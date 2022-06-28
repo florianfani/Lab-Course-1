@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
 import { Job } from "../../../app/models/job";
 import { useStore } from "../../../app/stores/store";
+import {format} from 'date-fns';
 
 interface Props {
     job: Job
@@ -28,7 +29,7 @@ export default function JobListItem({job}: Props) {
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {job.date}
+                    <Icon name='clock' /> {format(job.date!, 'dd MMM yyyy h:mm aa')}
                     <Icon name='marker' /> {job.city}
                 </span>
             </Segment>
