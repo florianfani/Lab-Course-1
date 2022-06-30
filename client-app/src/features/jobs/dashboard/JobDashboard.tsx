@@ -28,7 +28,7 @@ export default observer(function JobDashboard(){
   
   
   
-    if (jobStore.loadingInitial) return <LoadingComponent content='Loading app' />
+    if (jobStore.loadingInitial) return <LoadingComponent content='Loading jobs...' />
     return(
         <Grid>
             <Grid.Column width='10'>
