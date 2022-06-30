@@ -208,3 +208,16 @@ D:\Old Win\important data\Lab Course 1\Klinika-Lab1\Project\API\obj\Debug\net5.0
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
