@@ -8,6 +8,8 @@ using MediatR;
 using Persistence;
 using FluentValidation;
 using Application.Core;
+using Application.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Jobs
 {
@@ -31,13 +33,26 @@ namespace Application.Jobs
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
         private readonly DataContext context;
-            public Handler(DataContext context)
+        private readonly IUserAccessor userAccessor;
+            public Handler(DataContext context, IUserAccessor userAccessor)
             {
+            this.userAccessor = userAccessor;
             this.context = context;
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                var user = await this.context.Users.FirstOrDefaultAsync(x => 
+                    x.UserName == this.userAccessor.GetUsername());
+
+                var attendee = new JobAttendee{
+                    AppUser = user,
+                    Job = request.Job,
+                    IsPost = true
+                };
+
+                request.Job.Attendees.Add(attendee);    
+
                 this.context.Jobs.Add(request.Job);
 
                 var result = await this.context.SaveChangesAsync() > 0;

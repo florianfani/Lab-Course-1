@@ -28,6 +28,9 @@
             "projectReferences": {
               "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj": {
                 "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj"
+              },
+              "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -195,6 +198,62 @@
               "version": "[5.0.1, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
+        "outputPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\flori\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj": {
+                "projectPath": "C:\\Lab Course 1\\Klinika-Lab1\\Project\\Application\\Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "imports": [
             "net461",
             "net462",

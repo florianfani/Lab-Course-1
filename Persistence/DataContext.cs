@@ -15,5 +15,23 @@ namespace Persistence
         }
 
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobAttendee> JobAttendees { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<JobAttendee>(x => x.HasKey(aa => new {aa.AppUserId, aa.JobId}));
+
+            builder.Entity<JobAttendee>()
+                .HasOne(u => u.AppUser)
+                .WithMany(a => a.Jobs)
+                .HasForeignKey(aa => aa.AppUserId);
+
+             builder.Entity<JobAttendee>()
+                .HasOne(u => u.Job)
+                .WithMany(a => a.Attendees)
+                .HasForeignKey(aa => aa.JobId);
+        }
     }
 }

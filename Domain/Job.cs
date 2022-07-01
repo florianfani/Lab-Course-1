@@ -21,6 +21,8 @@ namespace Domain
         public string Category { get; set; }
 
         public string City { get; set; }
+        public bool IsCancelled { get; set; }
+        public ICollection<JobAttendee> Attendees { get; set; } = new List<JobAttendee>();
 
     }
 }

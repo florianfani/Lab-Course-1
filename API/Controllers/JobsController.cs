@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
+
     public class JobsController : BaseApiController
     {
         
@@ -30,6 +30,7 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Create.Command {Job = job}));
         }
 
+        [Authorize(Policy = "IsJobPost")]
         [HttpPut("{id}")]
         public async Task<IActionResult> EditJob(Guid id, Job job){
             
@@ -37,9 +38,17 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new Edit.Command{Job = job}));
         }
 
+        [Authorize(Policy = "IsJobPost")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJob(Guid id){
             return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
+        }
+
+        [HttpPost("{id}/attend")]
+
+        public async Task<IActionResult> Attend(Guid id)
+        {
+            return HandleResult(await Mediator.Send(new UpdateAttendance.Command{Id = id}));
         }
 
     }
