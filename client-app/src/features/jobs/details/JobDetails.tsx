@@ -30,7 +30,7 @@ export default observer(function JobDetails(){
                <JobDetailedChat />
             </Grid.Column>
             <Grid.Column width={6}>
-               <JobDetailedSidebar />
+               <JobDetailedSidebar job={job} />
             </Grid.Column>
         </Grid>
     )

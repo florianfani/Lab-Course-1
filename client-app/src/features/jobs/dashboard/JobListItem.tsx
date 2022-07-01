@@ -4,6 +4,7 @@ import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
 import { Job } from "../../../app/models/job";
 import { useStore } from "../../../app/stores/store";
 import {format} from 'date-fns';
+import JobListItemAttendee from "./JobListItemAttendee";
 
 interface Props {
     job: Job
@@ -15,14 +16,31 @@ export default function JobListItem({job}: Props) {
     return(
         <Segment.Group>
             <Segment>
+                {job.isCancelled &&
+                    <Label attached='top' color='red' content='Cancelled' style={{textAlign: 'center'}} />
+                }
                 <Item.Group>
                     <Item>
-                        <Item.Image size='tiny' circular src='/assets/user.png' />
+                        <Item.Image style={{marginBottom: 4}} size='tiny' circular src='/assets/user.png' />
                         <Item.Content>
                             <Item.Header as={Link} to={`/jobs/${job.id}`}>
                                 {job.title}
                             </Item.Header>
-                            <Item.Description>Posted by Aurel</Item.Description>
+                            <Item.Description>Posted by {job.post?.displayName}</Item.Description>
+                            {job.isPost && (
+                                <Item.Description>
+                                    <Label basic color='orange'>
+                                        You are posting this job interview
+                                    </Label>
+                                </Item.Description>
+                            )}
+                            {job.isGoing && !job.isPost && (
+                                <Item.Description>
+                                    <Label basic color='green'>
+                                        You are going to this job interview
+                                    </Label>
+                                </Item.Description>
+                            )}
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -34,7 +52,7 @@ export default function JobListItem({job}: Props) {
                 </span>
             </Segment>
             <Segment secondary>
-                Attendees go here
+                <JobListItemAttendee attendees={job.attendees!} />
             </Segment>
             <Segment clearing>
                 <span>{job.description}</span>

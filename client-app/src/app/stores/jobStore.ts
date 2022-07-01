@@ -1,8 +1,10 @@
 import { action, makeAutoObservable, makeObservable, observable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Job } from "../models/job";
+import { Job, JobFormValues } from "../models/job";
 import { v4 as uuid } from "uuid";
 import {format} from 'date-fns';
+import { store } from "./store";
+import { Profile } from "../models/profile";
 
 export default class JobStore {
     jobRegistry = new Map<string, Job>();
@@ -70,6 +72,14 @@ export default class JobStore {
     }
 
     private setJob = (job: Job) => {
+        const user = store.userStore.user;
+        if(user) {
+            job.isGoing = job.attendees!.some(
+              a => a.username === user.username  
+            )
+            job.isPost = job.postUsername === user.username;
+            job.post = job.attendees?.find(x => x.username === job.postUsername);
+        }
         job.date = new Date(job.date!);
         this.jobRegistry.set(job.id, job);
     }
@@ -83,41 +93,38 @@ export default class JobStore {
     }
 
 
-    createJob = async (job: Job) => {
-        this.loading = true;
+    createJob = async (job: JobFormValues) => {
+        const user = store.userStore.user;
+        const attendee = new Profile(user!)
         try {
             await agent.Jobs.create(job);
+            const newJob = new Job(job);
+            newJob.postUsername = user!.username;
+            newJob.attendees = [attendee];
+            this.setJob(newJob);
             runInAction(() => {
-                this.jobRegistry.set(job.id, job);
-                this.selectedJob = job;
-                this.editMode = false;
-                this.loading = false;
+                this.selectedJob = newJob;
             })
         }
         catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
-    updateJob = async(job: Job) => {
-        this.loading = true;
+    updateJob = async(job: JobFormValues) => {
+
         try{
             await agent.Jobs.update(job);
             runInAction(() => {
-                this.jobRegistry.set(job.id, job);
-                this.selectedJob = job;
-                this.editMode = false;
-                this.loading = false;
+                if(job.id){
+                    let updatedJob = {...this.getJob(job.id), ...job}
+                    this.jobRegistry.set(job.id, updatedJob as Job);
+                    this.selectedJob = updatedJob as Job;
+                }
             })
         }
         catch (error) {
             console.log(error);
-            runInAction(() => {
-                this.loading = false;
-            })
         }
     }
 
@@ -135,6 +142,50 @@ export default class JobStore {
             runInAction(() => {
                 this.loading = false;
             })
+        }
+    }
+
+    updateAttendance = async () => {
+        const user = store.userStore.user;
+        this.loading = true;
+        try{
+            await agent.Jobs.attend(this.selectedJob!.id);
+            runInAction(() => {
+                if(this.selectedJob?.isGoing){
+                    this.selectedJob.attendees = 
+                        this.selectedJob.attendees?.filter(a => a.username !== user?.username);
+                    this.selectedJob.isGoing = false;    
+                }
+                else{
+                    const attendee = new Profile(user!);
+                    this.selectedJob?.attendees?.push(attendee);
+                    this.selectedJob!.isGoing = true;
+                }
+                this.jobRegistry.set(this.selectedJob!.id, this.selectedJob!);
+            })
+        }
+        catch(error){
+            console.log(error);
+        }
+        finally{
+            runInAction(() => this.loading = false);
+        }
+    }
+
+    cancelJobToggle = async () => {
+        this.loading = true;
+        try{
+            await agent.Jobs.attend(this.selectedJob!.id);
+            runInAction(() => {
+                this.selectedJob!.isCancelled = !this.selectedJob?.isCancelled;
+                this.jobRegistry.set(this.selectedJob!.id, this.selectedJob!);
+            })
+        }
+        catch(error) {
+            console.log(error);
+        }
+        finally{
+            runInAction(() => this.loading = false);
         }
     }
 }

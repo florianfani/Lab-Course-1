@@ -1,9 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
+import {Button, Header, Item, Segment, Image, Label} from 'semantic-ui-react'
 import {Job} from "../../../app/models/job";
 import {format} from 'date-fns';
+import { useStore } from '../../../app/stores/store';
 
 const jobImageStyle = {
     filter: 'brightness(30%)'
@@ -23,9 +24,14 @@ interface Props {
 }
 
 export default observer (function JobDetailedHeader({job}: Props) {
+    const {jobStore: {updateAttendance, loading, cancelJobToggle}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>
+                {job.isCancelled && 
+                    <Label style={{position: 'absolute', zIndex: 1000, left: -14, top: 20}} 
+                        ribbon color='red' content='Cancelled' />
+                }
                 <Image src={`/assets/categoryImages/${job.category}.jpg`} fluid style={jobImageStyle}/>
                 <Segment style={jobImageTextStyle} basic>
                     <Item.Group>
@@ -38,7 +44,7 @@ export default observer (function JobDetailedHeader({job}: Props) {
                                 />
                                 <p>{format(job.date!, 'dd MMM yyyy')}</p>
                                 <p>
-                                    Posted by <strong>Aurel</strong>
+                                    Posted by <strong><Link to={`/profiles/${job.post?.username}`}>{job.post?.displayName}</Link></strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -46,11 +52,33 @@ export default observer (function JobDetailedHeader({job}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button color='teal'>Join Job</Button>
-                <Button>Cancel attendance</Button>
-                <Button as={Link} to={`/manage/${job.id}`} color='orange' floated='right'>
-                    Manage Job
-                </Button>
+                {job.isPost ? (
+                    <>
+                        <Button 
+                            color={job.isCancelled ? 'green' : 'red'}
+                            floated='left'
+                            basic
+                            content={job.isCancelled ? 'Re-activate Job' : 'Cancel Job'}
+                            onClick={cancelJobToggle}
+                            loading={loading}
+                        />
+                        <Button as={Link} 
+                            disabled={job.isCancelled}
+                            to={`/manage/${job.id}`} 
+                            color='orange' 
+                            floated='right'>
+                            Manage Job
+                        </Button>
+                    </>
+                    
+                ) : job.isGoing ? (
+                    <Button loading={loading} onClick={updateAttendance}>Cancel attendance</Button>
+                ) : (
+                    <Button disabled={job.isCancelled} 
+                        loading={loading} onClick={updateAttendance} color='teal'>
+                            Join Job Interview
+                    </Button>
+                )}
             </Segment>
         </Segment.Group>
     )

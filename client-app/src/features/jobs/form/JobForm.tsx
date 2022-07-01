@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Button, Header, Label, Segment } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { Job } from "../../../app/models/job";
+import { Job, JobFormValues } from "../../../app/models/job";
 import { useStore } from "../../../app/stores/store";
 import {v4 as uuid} from 'uuid';
 import { Formik, Form, ErrorMessage } from "formik";
@@ -22,14 +22,7 @@ export default observer(function JobForm(){
     const {id} = useParams<{id: string}>();
 
 
-    const [job, setJob] = useState<Job>({
-        id: '',
-        title: '',
-        description: '',
-        date: null,
-        city: '',
-        category: ''
-    });
+    const [job, setJob] = useState<JobFormValues>(new JobFormValues());
 
     const validationSchema = Yup.object({
         title: Yup.string().required('The job title is required'),
@@ -40,14 +33,14 @@ export default observer(function JobForm(){
     })
 
     useEffect(() => {
-        if(id) loadJob(id).then(job => setJob(job!))
+        if(id) loadJob(id).then(job => setJob(new JobFormValues(job)))
     }, [id, loadJob]);
 
 
 
 
-    function handleFormSubmit(job: Job){
-        if(job.id.length ===0){
+    function handleFormSubmit(job: JobFormValues){
+        if(!job.id){
             let newJob = {
                 ...job,
                 id: uuid()
@@ -88,7 +81,7 @@ export default observer(function JobForm(){
                         <MyTextInput placeholder='City' name='city' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={loading} floated='right' 
+                            loading={isSubmitting} floated='right' 
                             positive type='submit' content='Submit' />
                         <Button as={Link} to='/jobs' floated='right' type='button' content='Cancel' />
                     </Form>

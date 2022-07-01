@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
-import { Job } from "../models/job";
+import { Job, JobFormValues } from "../models/job";
 import { User, UserFormValues } from "../models/user";
 import { store } from "../stores/store";
 
@@ -69,9 +69,10 @@ const requests = {
 const Jobs = {
     list: () => requests.get<Job[]>('/jobs'),
     details: (id: string) => requests.get<Job>(`/jobs/${id}`),
-    create: (job: Job) => axios.post<void>('/jobs', job),
-    update: (job: Job) => axios.put<void>(`/jobs/${job.id}`, job),
-    delete: (id: string) => axios.delete<void>(`/jobs/${id}`)
+    create: (job: JobFormValues) => requests.post<void>('/jobs', job),
+    update: (job: JobFormValues) => requests.put<void>(`/jobs/${job.id}`, job),
+    delete: (id: string) => requests.del<void>(`/jobs/${id}`),
+    attend: (id: string) => requests.post<void>(`/jobs/${id}/attend`, {})
 }
 
 const Account = {
