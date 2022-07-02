@@ -21,12 +21,12 @@ export default function JobListItem({job}: Props) {
                 }
                 <Item.Group>
                     <Item>
-                        <Item.Image style={{marginBottom: 4}} size='tiny' circular src='/assets/user.png' />
+                        <Item.Image style={{marginBottom: 4}} size='tiny' circular src={job.post?.image || '/assets/user.png'} />
                         <Item.Content>
                             <Item.Header as={Link} to={`/jobs/${job.id}`}>
                                 {job.title}
                             </Item.Header>
-                            <Item.Description>Posted by {job.post?.displayName}</Item.Description>
+                            <Item.Description>Posted by <Link to={`/profiles/${job.postUsername}`}>{job.post?.displayName}</Link></Item.Description>
                             {job.isPost && (
                                 <Item.Description>
                                     <Label basic color='orange'>

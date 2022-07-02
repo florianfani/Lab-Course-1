@@ -19,6 +19,7 @@ import NotFound from '../../features/errors/NotFound';
 import ServerError from '../../features/errors/ServerError';
 import LoginForm from '../../features/users/LoginForm';
 import ModalContainer from '../common/modals/ModalContainer';
+import ProfilePage from '../../features/profiles/ProfilePage';
 
 
 
@@ -57,6 +58,7 @@ function App(): JSX.Element {
             <Route exact path='/jobs' component={JobDashboard} />
             <Route path='/jobs/:id' component={JobDetails} />
             <Route key={location.key} path={['/createJob', '/manage/:id']} component={JobForm} />
+            <Route path='/profiles/:username' component={ProfilePage} />
             <Route path='/errors' component={TestErrors} />
             <Route path='/server-error' component={ServerError} />
             <Route path='/login' component={LoginForm} />
