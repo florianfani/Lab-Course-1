@@ -223,3 +223,5 @@ C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityMode
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Infrastructure.dll
 C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Infrastructure.pdb
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\Lab Course 1\Klinika-Lab1\Project\API\bin\Debug\net5.0\Newtonsoft.Json.dll
