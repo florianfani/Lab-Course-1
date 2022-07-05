@@ -23,6 +23,7 @@ namespace Domain
         public string City { get; set; }
         public bool IsCancelled { get; set; }
         public ICollection<JobAttendee> Attendees { get; set; } = new List<JobAttendee>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     }
 }

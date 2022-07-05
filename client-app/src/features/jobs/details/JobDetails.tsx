@@ -13,12 +13,13 @@ import JobDetailedSidebar from "./JobDetailedSidebar";
 
 export default observer(function JobDetails(){
     const {jobStore} = useStore();
-    const {selectedJob: job, loadJob, loadingInitial} = jobStore;
+    const {selectedJob: job, loadJob, loadingInitial, clearSelectedJob} = jobStore;
     const {id} = useParams<{id: string}>();
 
     useEffect(() => {
       if(id) loadJob(id);
-    }, [id, loadJob]);
+      return () => clearSelectedJob();
+    }, [id, loadJob, clearSelectedJob]);
 
     if(loadingInitial || !job) return <LoadingComponent />;
 
@@ -27,7 +28,7 @@ export default observer(function JobDetails(){
             <Grid.Column width={10}>
                <JobDetailedHeader job={job} />
                <JobDetailedInfo job={job} />
-               <JobDetailedChat />
+               <JobDetailedChat jobId={job.id}/>
             </Grid.Column>
             <Grid.Column width={6}>
                <JobDetailedSidebar job={job} />

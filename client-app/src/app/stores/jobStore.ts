@@ -188,4 +188,8 @@ export default class JobStore {
             runInAction(() => this.loading = false);
         }
     }
+
+    clearSelectedJob = () => {
+        this.selectedJob = undefined;
+    }
 }

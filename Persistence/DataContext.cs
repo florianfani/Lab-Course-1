@@ -17,6 +17,7 @@ namespace Persistence
         public DbSet<Job> Jobs { get; set; }
         public DbSet<JobAttendee> JobAttendees { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,6 +34,11 @@ namespace Persistence
                 .HasOne(u => u.Job)
                 .WithMany(a => a.Attendees)
                 .HasForeignKey(aa => aa.JobId);
+
+            builder.Entity<Comment>()
+                .HasOne(a => a.Job)
+                .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
