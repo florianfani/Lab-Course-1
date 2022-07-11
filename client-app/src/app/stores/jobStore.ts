@@ -192,4 +192,15 @@ export default class JobStore {
     clearSelectedJob = () => {
         this.selectedJob = undefined;
     }
+
+    updateAttendeeFollowing = (username: string) => {
+        this.jobRegistry.forEach(job => {
+            job.attendees.forEach(attentee => {
+                if(attentee.username === username) {
+                    attentee.following ? attentee.followersCount-- : attentee.followersCount++;
+                    attentee.following = !attentee.following;
+                }
+            })
+        })
+    }
 }
