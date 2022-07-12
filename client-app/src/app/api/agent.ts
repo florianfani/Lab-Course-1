@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { history } from "../..";
 import { Job, JobFormValues } from "../models/job";
+import { PaginatedResult } from "../models/pagination";
 import { Photo, Profile } from "../models/profile";
 import { User, UserFormValues } from "../models/user";
 import { store } from "../stores/store";
@@ -22,6 +23,11 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(async response =>{
         await sleep(300);
+        const pagination = response.headers['pagination'];
+        if(pagination) {
+            response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+            return response as AxiosResponse<PaginatedResult<any>>
+        }
         return response;
 }, (error: AxiosError) =>{
     const {data, status, config} = error.response!;
@@ -68,7 +74,8 @@ const requests = {
 }
 
 const Jobs = {
-    list: () => requests.get<Job[]>('/jobs'),
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Job[]>>('/jobs', {params})
+        .then(responseBody),
     details: (id: string) => requests.get<Job>(`/jobs/${id}`),
     create: (job: JobFormValues) => requests.post<void>('/jobs', job),
     update: (job: JobFormValues) => requests.put<void>(`/jobs/${job.id}`, job),

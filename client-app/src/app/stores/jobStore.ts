@@ -1,10 +1,12 @@
-import { action, makeAutoObservable, makeObservable, observable, runInAction } from "mobx";
+import { action, makeAutoObservable, makeObservable, observable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Job, JobFormValues } from "../models/job";
 import { v4 as uuid } from "uuid";
 import {format} from 'date-fns';
 import { store } from "./store";
 import { Profile } from "../models/profile";
+import { Pagination, PagingParams } from "../models/pagination";
+
 
 export default class JobStore {
     jobRegistry = new Map<string, Job>();
@@ -12,9 +14,64 @@ export default class JobStore {
     editMode = false;
     loading = false;
     loadingInitial = false;
+    pagination: Pagination | null = null;
+    pagingParams = new PagingParams();
+    predicate = new Map().set('all', true);
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
+
+        reaction(
+            () => this.predicate.keys(),
+            () => {
+                this.pagingParams = new PagingParams();
+                this.jobRegistry.clear();
+                this.loadJobs();
+            }
+        )
+    }
+
+    setPagingParams = (pagingParams: PagingParams) => {
+        this.pagingParams = pagingParams;
+    }
+
+    setPredicate = (predicate: string, value: string | Date) => {
+        const resetPredicate = () => {
+            this.predicate.forEach((value, key) => {
+                if (key !== 'startDate') this.predicate.delete(key);
+            })
+        }
+        switch (predicate) {
+            case 'all':
+                resetPredicate();
+                this.predicate.set('all', true);
+                break;
+            case 'isGoing':
+                resetPredicate();
+                this.predicate.set('isGoing', true);
+                break;
+            case 'isPost':
+                resetPredicate();
+                this.predicate.set('isPost', true);
+                break;
+            case 'startDate':
+                this.predicate.delete('startDate');
+                this.predicate.set('startDate', value);
+        }
+    } 
+
+    get axiosParams() {
+        const params = new URLSearchParams();
+        params.append('pageNumber', this.pagingParams.pageNumber.toString());
+        params.append('pageSize', this.pagingParams.pageSize.toString());
+        this.predicate.forEach((value, key) => {
+            if (key === 'startDate') {
+                params.append(key, (value as Date).toISOString())
+            } else {
+                params.append(key, value);
+            }
+        })
+        return params;
     }
 
     get jobsByDate() {
@@ -35,16 +92,21 @@ export default class JobStore {
     loadJobs = async () => {
         this.loadingInitial = true;
         try{
-            const jobs = await agent.Jobs.list();
-                jobs.forEach(job => {
+            const result = await agent.Jobs.list(this.axiosParams);
+                result.data.forEach(job => {
                     this.setJob(job);
                   })
+                  this.setPagination(result.pagination);
                   this.setLoadingInitial(false);
         }
         catch(error) {
             console.log(error);
             this.setLoadingInitial(false);
         }
+    }
+
+    setPagination = (pagination: Pagination) => {
+        this.pagination = pagination;
     }
 
     loadJob = async (id: string) => {

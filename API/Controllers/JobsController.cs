@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Core;
 using Application.Jobs;
 using Domain;
 using Microsoft.AspNetCore.Authorization;
@@ -15,8 +16,8 @@ namespace API.Controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> GetJobs(){
-            return HandleResult(await this.Mediator.Send(new List.Query()));
+        public async Task<IActionResult> GetJobs([FromQuery]JobParams param){
+            return HandlePagedResult(await this.Mediator.Send(new List.Query{Params = param}));
         }
 
         [HttpGet("{id}")]
