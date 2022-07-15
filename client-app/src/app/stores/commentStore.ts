@@ -14,7 +14,7 @@ export default class CommentStore {
     createHubConnection = (jobId: string) => {
         if (store.jobStore.selectedJob) {
             this.hubConnection = new HubConnectionBuilder()
-                .withUrl('http://localhost:5000/chat?jobId=' + jobId, {
+                .withUrl(process.env.REACT_APP_CHAT_URL + '?jobId=' + jobId, {
                     accessTokenFactory: () => store.userStore.user?.token!
                 })
                 .withAutomaticReconnect()

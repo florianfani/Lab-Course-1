@@ -20,6 +20,7 @@ import ServerError from '../../features/errors/ServerError';
 import LoginForm from '../../features/users/LoginForm';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
+import PrivateRoute from './PrivateRoute';
 
 
 
@@ -55,13 +56,12 @@ function App(): JSX.Element {
         <NavBar />
         <Container style={{marginTop: '7em'}}>
           <Switch>
-            <Route exact path='/jobs' component={JobDashboard} />
-            <Route path='/jobs/:id' component={JobDetails} />
-            <Route key={location.key} path={['/createJob', '/manage/:id']} component={JobForm} />
-            <Route path='/profiles/:username' component={ProfilePage} />
-            <Route path='/errors' component={TestErrors} />
+            <PrivateRoute exact path='/jobs' component={JobDashboard} />
+            <PrivateRoute path='/jobs/:id' component={JobDetails} />
+            <PrivateRoute key={location.key} path={['/createJob', '/manage/:id']} component={JobForm} />
+            <PrivateRoute path='/profiles/:username' component={ProfilePage} />
+            <PrivateRoute path='/errors' component={TestErrors} />
             <Route path='/server-error' component={ServerError} />
-            <Route path='/login' component={LoginForm} />
             <Route component={NotFound} />
           </Switch>
 
